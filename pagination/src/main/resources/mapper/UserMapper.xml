@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- namespace指定对应的映射接口类 -->
+<mapper namespace="com.zc.pagination.mapper.UserMapper">
+    <!-- 结果映射（用于返回的不是一张表的数据映射） id：唯一标识，type：返回类型-->
+    <!-- resultType：处理是同一张表的返回数据，resultMap：处理不是同一张表的返回数据 -->
+    <resultMap id="userChildrenMap" type="com.zc.pagination.model.UserChildren">
+        <id column="id" property="id" />
+        <result column="age" property="age" />
+        <result column="email" property="email" />
+        <result column="name" property="name" />
+        <!-- ofType：属性集合中的类型 -->
+        <collection property="children" ofType="com.zc.pagination.entity.Children" columnPrefix="c_">
+            <id column="id" property="id" />
+            <result column="name" property="name" />
+            <result column="user_id" property="userId" />
+        </collection>
+    </resultMap>
+
+    <!-- 分页是配置好的框架自动分，返回类型是resultType指定的表对应的实体类或者resultMap指定的连接表对应的实体类 -->
+    <select id="mySelectPage" resultType="com.zc.pagination.entity.User">
+        select *
+        from user
+        where (age = #{pg.selectInt} and name = #{pg.selectStr}) or (age = #{ps.yihao} and name = #{ps.erhao})
+    </select>
+
+    <select id="mySelectPageMap" resultType="com.zc.pagination.entity.User">
+        select *
+        from user
+        <where>
+            <if test="name != null and name != ''">
+                user.name like #{map.name}
+            </if>
+        </where>
+    </select>
+
+    <!-- 占位符拼接完成后再传入 -->
+    <select id="mySelectMap" resultType="com.zc.pagination.entity.User">
+        from user
+        <where>
+            <if test="name != null and name !=''">
+                user.name like #{name}
+            </if>
+        </where>
+    </select>
+
+    <!-- 占位符在xml里使用mysql函数concat拼接 -->
+    <select id="myPageSelect" resultType="com.zc.pagination.entity.User">
+        select *
+        from user
+        <where>
+            <if test="name != null and name != ''">
+                and user.name like concat('%',#{name},'%')
+            </if>
+        </where>
+    </select>
+
+    <select id="rowBoundsList" resultType="com.zc.pagination.entity.User">
+        select *
+        from user
+        <where>
+            <if test="name != null and name !=''">
+                and user.name like #{name}
+            </if>
+        </where>
+    </select>
+</mapper>
