@@ -6,7 +6,7 @@ package com.zc.exercise.enumeration;
  */
 public enum GenderEnum {
     /**
-     * 原生枚举，默认使用枚举值顺序： 0：MALE， 1：FEMALE
+     * 原生枚举，默认使用枚举值顺序交互： 0：MALE， 1：FEMALE
      */
     MALE,
     FEMALE;
