@@ -55,6 +55,7 @@
         </where>
     </select>
 
+    <!-- RowBounds 代替使用limit offset -->
     <select id="rowBoundsList" resultType="com.zc.pagination.entity.User">
         select *
         from user
@@ -64,4 +65,5 @@
             </if>
         </where>
     </select>
+
 </mapper>

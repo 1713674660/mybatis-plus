@@ -1,5 +1,6 @@
 package com.zc.pagination.config;
 
+import com.baomidou.mybatisplus.core.injector.ISqlInjector;
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.pagination.optimize.JsqlParserCountOptimize;
 import org.mybatis.spring.annotation.MapperScan;
@@ -14,7 +15,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableTransactionManagement
 @MapperScan("com.zc.pagination.mapper")
-public class PaginationConfig {
+public class MybatisPlusConfig {
     @Bean
     public PaginationInterceptor paginationInterceptor(){
         // 开启 count 的 join 优化,只针对 left join !!!

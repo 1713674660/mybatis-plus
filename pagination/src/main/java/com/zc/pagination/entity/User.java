@@ -1,5 +1,6 @@
 package com.zc.pagination.entity;
 
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -14,4 +15,7 @@ public class User {
     private String name;
     private Integer age;
     private String email;
+
+    @TableLogic
+    private Integer deleted;
 }
