@@ -10,6 +10,7 @@
         <module>quick-start</module>
         <module>wrapper</module>
         <module>pagination</module>
+        <module>enum</module>
     </modules>
     <packaging>pom</packaging>
 </project>
