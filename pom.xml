@@ -12,6 +12,7 @@
         <module>pagination</module>
         <module>enum</module>
         <module>generator</module>
+        <module>locker</module>
     </modules>
     <packaging>pom</packaging>
 </project>
